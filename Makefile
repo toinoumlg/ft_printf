@@ -1,10 +1,9 @@
-OUT = final.out
+NAME = libftprintf.a
 CFLAGS = -Werror -Wall -Wextra
 CC = gcc 
 
 CFILES = ft_printf.c ft_printf_s.c ft_printf_specifier.c ft_printf_c.c \
-			ft_printf_i.c ft_printf_x.c
-
+         ft_printf_i.c ft_printf_x.c
 
 LIBFT_DIR = libft
 OBJ_DIR = srcs
@@ -15,22 +14,14 @@ INCLUDES = -I$(LIBFT_DIR)
 
 OBJECTS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(CFILES))
 DEPS = $(OBJECTS:.o=.d)
-HEADERS = ft_printf.h
 
-all: $(LIBFT) $(OUT)
+all: $(NAME)
 
-run: all
-	@./$(OUT)
-
-c_run: all
-	@$(MAKE) clean
-	@./$(OUT)
+$(NAME): $(OBJECTS) $(LIBFT)
+	ar rcs $@ $(OBJECTS)
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
-
-$(OUT): $(OBJECTS) $(LIBFT)
-	@$(CC) $(CFLAGS) -o $@ $(OBJECTS) $(LIBFT)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(OBJ_DIR)
@@ -43,8 +34,10 @@ clean:
 	@make -C $(LIBFT_DIR) clean
 
 fclean: clean
-	@rm -f $(OUT)
+	@rm -f $(NAME)
 	@rm -rf $(OBJ_DIR)
 	@make -C $(LIBFT_DIR) fclean
 
-re : fclean all
+re: fclean all
+
+.PHONY: all clean fclean re

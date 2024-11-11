@@ -17,4 +17,6 @@ int	ft_printf_s(char *c);
 int ft_printf_i(int nb);
 int ft_printf_x(long long int nb, char c);
 
+int	ft_printf_p(void *c);
+
 # endif

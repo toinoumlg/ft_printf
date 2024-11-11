@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/11 10:07:58 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/11 21:22:35 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,4 @@ int		ft_printf(const char *s, ...)
 	}
 	va_end (args);
 	return (count);
-}
-
-int main()
-{
-	int result = printf("Sentence to%% know how many %X\n", 57436853);
-	int result_me = ft_printf("Sentence to%% know how many %X\n", 57436853);
-
-    printf("%d characters were written\n", result);
-	ft_printf("%d characters were written\n", result_me);
 }
