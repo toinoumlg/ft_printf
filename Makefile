@@ -3,7 +3,7 @@ CFLAGS = -Werror -Wall -Wextra
 CC = gcc 
 
 CFILES = ft_printf.c ft_printf_s.c ft_printf_specifier.c ft_printf_c.c \
-			ft_printf_i.c
+			ft_printf_i.c ft_printf_x.c
 
 
 LIBFT_DIR = libft
