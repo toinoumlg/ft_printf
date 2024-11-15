@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 13:43:21 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/11 10:24:21 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/15 07:24:39 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,11 @@
 
 int	ft_printf_s(char *c)
 {
-	int count = 0;
-	while (*c)
-	{
-		ft_putchar_fd(*c, 1);
-		count++;
-		c++;
-	}
-	return (count);
+	return (ft_putstr_int(c));
 }
 
 int	ft_printf_p(void *c)
 {
-	int count = 0;
-	char *str = (char *)c;
-	while (*str)
-	{
-		ft_putchar_fd(*str, 1);
-		count++;
-		c++;
-	}
-	return (count);
+	write(1, "0x", 2);
+	return (ft_putnbr_base((long long int)c, "0123456789abcdef"));
 }

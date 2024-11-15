@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/11 21:22:35 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/15 06:23:16 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,7 @@ int		ft_printf(const char *s, ...)
 			s++;
 		}
 		else
-		{
-			count++;
-			ft_putchar_fd(*s, 1);
-		}
+			count += ft_putchar_int(*s);
 		s++;
 	}
 	va_end (args);

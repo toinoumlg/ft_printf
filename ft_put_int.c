@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_i.c                                      :+:      :+:    :+:   */
+/*   ft_put_int.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 08:49:32 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/15 06:15:22 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/15 06:10:01 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/15 06:19:09 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_i(int nb)
+int ft_putchar_int(char c)
 {
-	char *str_nb;
-	str_nb = ft_itoa(nb);
-	return(ft_putstr_int(str_nb));
+	ft_putchar_fd(c, 1);
+	return 1;
+}
+
+
+int ft_putstr_int(char *s)
+{
+	ft_putstr_fd(s, 1);
+	return (ft_strlen(s));
 }

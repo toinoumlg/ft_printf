@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 08:46:05 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/11 08:48:41 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/15 06:15:45 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,5 @@
 
 int ft_printf_c(char c)
 {
-	ft_putchar_fd(c, 1);
-	return (1);
+	return ft_putchar_int(c);
 }
