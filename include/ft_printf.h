@@ -2,7 +2,7 @@
 # define FT_PRINTF_H
 
 // To remove
-# include "libft/libft.h"
+# include "../libft/libft.h"
 # include <stdio.h>
 #include <string.h>
 

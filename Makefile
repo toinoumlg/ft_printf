@@ -2,28 +2,34 @@ NAME = libftprintf.a
 CFLAGS = -Werror -Wall -Wextra
 CC = gcc 
 
-CFILES = ft_printf.c ft_printf_s.c ft_printf_specifier.c ft_printf_c.c \
-         ft_printf_i.c ft_printf_x.c ft_put_int.c
+CFILES = $(SRC_DIR)/ft_printf.c $(SRC_DIR)/ft_printf_s.c $(SRC_DIR)/ft_printf_specifier.c $(SRC_DIR)/ft_printf_c.c \
+         $(SRC_DIR)/ft_printf_i.c $(SRC_DIR)/ft_printf_x.c $(SRC_DIR)/ft_put_int.c
 
+SRC_DIR = srcs
 LIBFT_DIR = libft
-OBJ_DIR = srcs
-INC_DIR = includes
+OBJ_DIR = $(SRC_DIR)/obj
+INC_DIR = include
+
 
 LIBFT = $(LIBFT_DIR)/libft.a
-INCLUDES = -I$(LIBFT_DIR)
+INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR)
 
-OBJECTS = $(patsubst %.c,$(OBJ_DIR)/%.o,$(CFILES))
+OBJECTS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CFILES))
 DEPS = $(OBJECTS:.o=.d)
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	ar rcs $@ $(OBJECTS)
+	@echo "Extracting objects from libft.a"
+	@mkdir -p $(OBJ_DIR)
+	@if [ -f $(LIBFT) ]; then cd $(OBJ_DIR) && ar -x ../../$(LIBFT); fi
+	ar rcs $@ $(OBJECTS) $(OBJ_DIR)/*.o
+	@rm -f $(OBJ_DIR)/*.o
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
-$(OBJ_DIR)/%.o: %.c
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
 	$(CC) $(INCLUDES) -MMD -MP -c $(CFLAGS) $< -o $@
 
@@ -32,6 +38,7 @@ $(OBJ_DIR)/%.o: %.c
 clean:
 	@rm -f $(OBJECTS) $(DEPS)
 	@make -C $(LIBFT_DIR) clean
+	@rm -f $(OBJ_DIR)/*.o
 
 fclean: clean
 	@rm -f $(NAME)
