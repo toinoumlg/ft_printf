@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 08:11:20 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/15 07:36:16 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/25 21:59:13 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,21 @@
 
 int	ft_printf_specifier(va_list args, const char *s)
 {
-	if (*(s + 1) == 'c')
-		return (ft_printf_c((char)va_arg(args, int)));
-	else if (*(s + 1) == 's')
-		return (ft_printf_s(va_arg(args, char *)));
-	else if (*(s + 1) == 'p')
+	if (*s == 'c')
+		return (ft_putchar_int((char)va_arg(args, int)));
+	else if (*s == 's')
+		return (ft_putstr_int(va_arg(args, char *)));
+	else if (*s == 'p')
 		return (ft_printf_p(va_arg(args, void *)));
-	else if (*(s + 1) == 'd' || *(s + 1) == 'i')
+	else if (*s == 'd' || *s == 'i')
 		return (ft_printf_i(va_arg(args, int)));
-	else if (*(s + 1) == 'u')
-		return (ft_printf_x(va_arg(args, unsigned int), *(s + 1)));
-	else if (*(s + 1) == 'x')
-		return (ft_printf_x(va_arg(args, long long int), *(s + 1)));
-	else if (*(s + 1) == 'X')
-		return (ft_printf_x(va_arg(args, long long int), *(s + 1)));
-	else if (*(s + 1) == '%')
-	{
-		ft_putchar_fd('%', 1);
-		return (1);
-	}
-	return (0);
+	else if (*s == 'u')
+		return (ft_printf_x(va_arg(args, unsigned int), *s));
+	else if (*s == 'x')
+		return (ft_printf_x(va_arg(args, unsigned int), *s));
+	else if (*s == 'X')
+		return (ft_printf_x(va_arg(args, unsigned int), *s));
+	else if (*s == '%')
+		return (ft_putchar_int('%'));
+	return (-1);
 }

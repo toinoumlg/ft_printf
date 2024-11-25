@@ -1,18 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_c.c                                      :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 08:46:05 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/15 06:15:45 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/25 17:34:58 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/25 21:38:18 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_printf_c(char c)
+int	main()
 {
-	return ft_putchar_int(c);
+	int ftp;
+	int p;
+	ftp = ft_printf(" %p %p ", 0, 0);
+	p = printf(" %p %p ", 0, 0);
+
+	printf("%d %d", ftp, p);
 }
