@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/25 21:54:59 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/25 21:56:53 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/25 22:10:31 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/25 22:11:22 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 # include <stdio.h>
 # include <string.h>
 
-int	ft_putchar_int(char c);
-int	ft_putstr_int(char *s);
+# include <stdarg.h>
+
+int ft_putchar_int(char c);
+int ft_putstr_int(char *s);
 
 int	ft_printf(const char *s, ...);
 int	ft_printf_specifier(va_list args, const char *s);
-int	ft_check_specifier(va_list args, const char *s);
+int ft_check_specifier(va_list args, const char *s);
 
-int	ft_printf_c(char c);
+int ft_printf_c(char c);
 int	ft_printf_s(char *c);
-int	convert_base(int nbr, char *base);
+int convert_base(int nbr, char *base);
 
-int	ft_printf_i(int nb);
-int	ft_printf_x(unsigned int nb, char c);
+int ft_printf_i(int nb);
+int ft_printf_x(unsigned int nb, char c);
 
 int	ft_printf_p(void *c);
 int	ft_putnbr_base(unsigned long nbr, char *base);
 
-#endif
+# endif

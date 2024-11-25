@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:19:12 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/25 22:02:51 by amalangu         ###   ########.fr       */
+/*   Updated: 2024/11/25 22:12:30 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,3 +46,28 @@ int	ft_printf_x(unsigned int nb, char c)
 		count = ft_putnbr_base(nb, "0123456789");
 	return (count);
 }
+
+int	ft_printf_p(void *c)
+{
+	int		count;
+	long	nbr;
+
+	nbr = (unsigned long)c;
+	if (nbr == 0)
+		return (ft_putstr_int("(nil)"));
+	count = ft_putstr_int("0x");
+	count += ft_putnbr_base(nbr, "0123456789abcdef");
+	return (count);
+}
+
+int	ft_printf_i(int nb)
+{
+	char	*str_nb;
+	int		len;
+
+	str_nb = ft_itoa(nb);
+	len = ft_putstr_int(str_nb);
+	free(str_nb);
+	return (len);
+}
+

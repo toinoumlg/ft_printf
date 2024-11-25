@@ -1,13 +1,13 @@
 NAME = libftprintf.a
 TEST = test.out
 VALGRIND = valgrind.out
-#CFLAGS = -Werror -Wall -Wextra
+CFLAGS = -Werror -Wall -Wextra
 CC = gcc 
 VALGRIND_FLAG =  -g -Og
 
 
-CFILES = $(SRC_DIR)/ft_printf.c $(SRC_DIR)/ft_printf_s.c $(SRC_DIR)/ft_printf_specifier.c \
-         $(SRC_DIR)/ft_printf_i.c $(SRC_DIR)/ft_printf_x.c $(SRC_DIR)/ft_put_int.c
+CFILES = $(SRC_DIR)/ft_printf.c $(SRC_DIR)/ft_printf_putstr_int.c \
+		$(SRC_DIR)/ft_printf_specifier.c $(SRC_DIR)/ft_printf_nbr.c 
 
 CFILE_MAIN = $(SRC_DIR)/main.c
 
@@ -29,7 +29,6 @@ OBJECTS_MAIN = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CFILES)) \
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT)
-	@echo "Extracting objects from libft.a"
 	@mkdir -p $(OBJ_DIR)
 	@cd $(OBJ_DIR) && ar -x ../../$(LIBFT)
 	@ar rcs $@ $(OBJECTS) $(OBJ_DIR)/*.o
