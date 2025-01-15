@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/07 11:07:47 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/10 11:11:58 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Erases the data in the n bytes of the memory.
+// Starting at the location pointed to by s, by writing '\0' to that area.
+void	ft_bzero(void *s, size_t n)
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
+	unsigned char	*uc_s;
+	size_t			i;
+
+	i = 0;
+	uc_s = (unsigned char *)s;
+	while (i < n)
 	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
+		uc_s[i] = 0;
+		i++;
 	}
-	va_end(args);
-	return (count);
+	return ;
 }

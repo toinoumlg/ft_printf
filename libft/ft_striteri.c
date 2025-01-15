@@ -1,41 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/08 18:45:21 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/15 08:01:54 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Applies ’f’ on each character of the string passed as argument.
+// Passing its index as first argument.
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
+	int	i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
 	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
+		(*f)(i, &s[i]);
+		i++;
 	}
-	va_end(args);
-	return (count);
+	return ;
 }

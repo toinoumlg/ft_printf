@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/08 11:10:33 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/26 11:01:01 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Outputs  's' to 'fd' followed by a newline.
+void	ft_putendl_fd(char *s, int fd)
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
+	int		i;
+
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (s[i])
 	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
+		write(fd, &s[i], 1);
+		i++;
 	}
-	va_end(args);
-	return (count);
+	write(fd, "\n", 1);
 }

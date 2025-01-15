@@ -1,67 +1,43 @@
-NAME = libftprintf.a
-TEST = test.out
-VALGRIND = valgrind.out
+LIBFTPRINTF = libftprintf.a
 CFLAGS = -Werror -Wall -Wextra
 CC = gcc 
-VALGRIND_FLAG =  -g -Og
-
+HEADER = include/ft_printf.h
 
 CFILES = $(SRC_DIR)/ft_printf.c $(SRC_DIR)/ft_printf_putstr_int.c \
-		$(SRC_DIR)/ft_printf_specifier.c $(SRC_DIR)/ft_printf_nbr.c 
-
-CFILE_MAIN = $(SRC_DIR)/main.c
+		$(SRC_DIR)/ft_printf_specifier.c $(SRC_DIR)/ft_printf_nbr.c
 
 SRC_DIR = srcs
 LIBFT_DIR = libft
 OBJ_DIR = $(SRC_DIR)/obj
-OBJ_MAIN_DIR =
 INC_DIR = include
-
 
 LIBFT = $(LIBFT_DIR)/libft.a
 INCLUDES = -I$(LIBFT_DIR) -I$(INC_DIR)
 
 OBJECTS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CFILES))
-OBJECTS_MAIN = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CFILES)) \
-				$(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(CFILE_MAIN))
 
+all: $(LIBFTPRINTF)
 
-all: $(NAME)
-
-$(NAME): $(OBJECTS) $(LIBFT)
-	@mkdir -p $(OBJ_DIR)
-	@cd $(OBJ_DIR) && ar -x ../../$(LIBFT)
-	@ar rcs $@ $(OBJECTS) $(OBJ_DIR)/*.o
-	@rm -f $(OBJ_DIR)/*.o
-
-valgrind: $(VALGRIND)
-
-$(VALGRIND): $(OBJECTS_MAIN) $(LIBFT)
-	@$(CC) $(VALGRIND_FLAG) $(INCLUDES)  $(OBJECTS_MAIN) $(LIBFT) -o $@
-	valgrind ./$(VALGRIND)
-
-test: $(TEST)
-
-$(TEST): $(OBJECTS_MAIN) $(LIBFT)
-	@$(CC) $(INCLUDES)  $(OBJECTS_MAIN) $(LIBFT) -o $@
-	./$(TEST)
+$(LIBFTPRINTF): $(OBJECTS) $(HEADER) $(LIBFT)
+	mkdir -p $(OBJ_DIR)
+	cd $(OBJ_DIR) && ar -x ../../$(LIBFT)
+	ar rcs $@ $(OBJ_DIR)/*.o
+	make -C $(LIBFT_DIR) clean
 
 $(LIBFT):
 	@make -C $(LIBFT_DIR)
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
-	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(INCLUDES) -MMD -MP -c  $< -o $@
+	mkdir -p $(OBJ_DIR)
+	$(CC) $(INCLUDES) $(CFLAGS) -c $< -o $@
 
 clean:
-	@rm -f $(OBJECTS) $(DEPS)
-	@make -C $(LIBFT_DIR) clean
-	@rm -f $(OBJ_DIR)/*.o
+	rm -f $(OBJECTS)
+	rm -rf $(OBJ_DIR)
 
 fclean: clean
-	@rm -f $(NAME) $(VALGRIND) $(TEST)
-	@rm -rf $(OBJ_DIR)
-	@make -C $(LIBFT_DIR) fclean
+	rm -f $(LIBFTPRINTF)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 

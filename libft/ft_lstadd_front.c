@@ -1,41 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/08 21:34:32 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/10 11:17:39 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Adds the node ’new’ at the beginning of the list.
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
-	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
-	}
-	va_end(args);
-	return (count);
+	t_list	*c;
+
+	if (!lst || !new)
+		return ;
+	c = *lst;
+	new->next = c;
+	*lst = new;
 }

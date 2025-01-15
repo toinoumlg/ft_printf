@@ -1,41 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/10/12 15:30:33 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/15 07:42:30 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Function compares two strings for the first n bytes.
+// Returns: 0 if s1 == s2 || n = 0; negative if s1 < s2; positive if s1 > s2.
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
-	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
-	}
-	va_end(args);
-	return (count);
+	size_t	i;
+
+	i = 0;
+	if (n == 0)
+		return (0);
+	while (i < n - 1 && s1[i] == s2[i] && s1[i])
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

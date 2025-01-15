@@ -1,41 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/10 12:57:34 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:27:11 by amalangu         ###   ########.fr       */
+/*   Created: 2024/11/05 15:08:33 by amalangu          #+#    #+#             */
+/*   Updated: 2024/11/15 07:46:23 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf(const char *s, ...)
+// Scans n bytes of the memory pointed to by s for the first instance of c.
+// Returns a pointer to the matching byte or NULL if not found.
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	va_list	args;
-	int		count;
-	int		tmp;
-	va_start(args, s);
-	count = 0;
-	if (s == 0 || s == NULL)
-		return -1;
-	while (*s)
+	unsigned char	*c_s;
+	size_t			i;
+	unsigned char	c_c;
+
+	c_s = (unsigned char *)s;
+	c_c = (unsigned char)c;
+	i = 0;
+	while (i < n)
 	{
-		if (*s == '%')
-		{
-			tmp = ft_printf_specifier(args, s + 1);
-			if (tmp == -1)
-				return -1;
-			else
-				count += tmp;
-			s++;
-		}
-		else
-			count += ft_putchar_int(*s);
-		s++;
+		if (c_s[i] == c_c)
+			return ((void *)(c_s + i));
+		i++;
 	}
-	va_end(args);
-	return (count);
+	return (NULL);
 }
