@@ -226,6 +226,12 @@ int main(void)
 	printf("Retourné :\n");
 	printf("  %d\n\n", ft_printf(NULL));
 
+	printf("test 35 :\n");
+	printf("Attendue :\n");
+	printf("  %d\n", printf(""));
+	printf("Retourné :\n");
+	printf("  %d\n\n", ft_printf(""));
+
 /* 	//(test antoine)
 	unsigned long long large_ptr_value = 0xFFFFFFFFFFFFFFFF;
 	void *large_ptr = (void *)large_ptr_value;
