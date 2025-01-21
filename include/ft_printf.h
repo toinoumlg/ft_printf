@@ -6,14 +6,14 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:10:31 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/15 09:31:07 by amalangu         ###   ########.fr       */
+/*   Updated: 2025/01/21 00:43:19 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/libft.h"
+# include "../libft/include/libft.h"
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
