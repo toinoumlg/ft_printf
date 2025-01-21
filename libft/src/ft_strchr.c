@@ -6,7 +6,7 @@
 /*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/11 20:36:13 by amalangu          #+#    #+#             */
-/*   Updated: 2024/11/15 07:49:40 by amalangu         ###   ########.fr       */
+/*   Updated: 2025/01/21 08:28:01 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ char	*ft_strchr(const char *s, int c)
 	int	i;
 
 	i = 0;
+    if (!s)
+      return 0;
 	while (s[i])
 	{
 		if (s[i] == (char)c)
