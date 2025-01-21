@@ -63,8 +63,9 @@ char	*stop_on_next_line(int fd)
 	char	*full_line;
 	char	*tmp;
 	int		read_size;
+
 	if (BUFFER_SIZE <= 0)
-		return NULL;
+		return (NULL);
 	read_size = BUFFER_SIZE;
 	full_line = ft_calloc(sizeof(char), 1);
 	while (read_size == BUFFER_SIZE)
