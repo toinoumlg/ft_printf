@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amalangu <amalangu@student.42.fr>          +#+  +:+       +#+        */
+/*   By: amalangu <amalangu@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 22:10:31 by amalangu          #+#    #+#             */
-/*   Updated: 2025/01/21 00:43:19 by amalangu         ###   ########.fr       */
+/*   Updated: 2025/02/27 15:55:25 by amalangu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include "../libft/include/libft.h"
+# include "libft.h"
 # include <limits.h>
 # include <stdarg.h>
 # include <stdio.h>
